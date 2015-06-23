@@ -2,30 +2,36 @@ package flaxapps.jogl_util;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import javax.media.opengl.GL2;
 
 /**
- * @author Danny Flax
+ *
+ * @author Danny
  */
 public class AnimationHolder{ 
     ArrayList<ModelControl> objs = new ArrayList<ModelControl>();
-    int currentFrame = 0;
-    int maxFrame = 0;
+    public int currentFrame = 0;
+    
+    public int maxFrame = 0;
     
     public void restart(){
         currentFrame = 0;
     }
+    public ArrayList<Vertex> drawStillFrame(int frame, Vertex pos, GL2 gl, float rangle){
+    	//Draws a single frame, leaving the animation in place
+    	return objs.get(frame).drawModel(pos, gl, rangle);
+    }
+    
     public ArrayList<Vertex> drawStillFrame(Vertex pos, GL2 gl, float rangle){
-        return objs.get(currentFrame).drawModel(pos, gl, rangle);
-        
-      
+    	//Draws current frame, leaving the animation in place
+    	return objs.get(currentFrame).drawModel(pos, gl, rangle);
     }
     
     
     public ArrayList<Vertex> drawFrame(Vertex pos, GL2 gl, float rangle){
-        ArrayList<Vertex> a = objs.get(currentFrame).drawModel(pos, gl, rangle);
+        //Draws a frame and moves the animation forward
+    	ArrayList<Vertex> a = objs.get(currentFrame).drawModel(pos, gl, rangle);
         
         currentFrame++;
         if(currentFrame == maxFrame)
@@ -35,9 +41,8 @@ public class AnimationHolder{
     }
     
     
-    public AnimationHolder(String base, int frames){
-         //= frames - 1;
-        for(int i = 1; i<frames; i=i+2){
+    public AnimationHolder(String base, int start, int frames, int speed){
+        for(int i = start; i<frames + start; i=i+speed){
          maxFrame++;
             ModelControl ap = new ModelControl();
           String s = base + "_";
@@ -54,20 +59,20 @@ public class AnimationHolder{
               numZeros++;
           
           
-              for(int i2 = 0; i2<numZeros; i2++){
-                  s = s.concat("0");
-              }    
-                
-              s = s.concat(i+".obj");
-          
+          for(int i2 = 0; i2<numZeros; i2++){
+              s = s.concat("0");
+          }    
             
-              try {
-                 ap.loadModelData(s);
-                 objs.add(ap);
-            } catch (IOException ex) {
-                 Logger.getLogger(AnimationHolder.class.getName()).log(Level.SEVERE, null, ex);
-            }
-         
+          s = s.concat(i+".obj");
+	       
+            
+          try {
+        	  ap.loadModelData(s);
+		  } catch (IOException e) {
+			  e.printStackTrace();
+		  }
+          
+          objs.add(ap);
       }
     }
 }

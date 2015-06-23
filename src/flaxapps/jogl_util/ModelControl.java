@@ -155,12 +155,7 @@ public class ModelControl
      
         
 	 	FileInputStream fStream = new FileInputStream(new File(name));
-         
-//	 		URL u = MicroSimulation.class.getResource(name);
-//	 		
-//            InputStream in = u.openStream();
-            
-//            in = JOGL2Nehe10World3D.class.getResource(name).openStream();
+       
                  BufferedReader br = new BufferedReader(new InputStreamReader(fStream));
                  String strLine;
                  //Read File Line By Line
