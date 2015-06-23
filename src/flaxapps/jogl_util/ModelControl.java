@@ -64,7 +64,7 @@ public class ModelControl
 	}
 	
 	
-	public ArrayList<Vertex> drawModel(Vertex pos, GL2 gl, float rangle, float scale){
+	public ArrayList<Vertex> drawModel(Vertex pos, GL2 gl, float rangle, Vertex scale){
 		//Drawing code, uses the model data to send GL commands to the given OpenGL object
 		
 		ArrayList<Vertex> ret = new ArrayList<Vertex>();
@@ -106,9 +106,9 @@ public class ModelControl
 					vf.z = (float) (v.x*-Math.sin(rangle) + v.z*Math.cos(rangle));
 					vf.y = v.y;
 					
-					vf.x*=scale;
-					vf.y*=scale;
-					vf.z*=scale;
+					vf.x*=scale.x;
+					vf.y*=scale.y;
+					vf.z*=scale.z;
 					
 		 			v = vf;
 		 			
@@ -124,6 +124,10 @@ public class ModelControl
 	      
 	     return ret;
 	      
+	}
+	
+	public ArrayList<Vertex> drawModel(Vertex pos, GL2 gl, float rangle, float scale){
+		return this.drawModel(pos, gl, rangle, new Vertex(scale,scale,scale));
 	}
 	
 	public ArrayList<Vertex> drawModel(Vertex pos, GL2 gl, float rangle){
