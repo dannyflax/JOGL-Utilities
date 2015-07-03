@@ -21,3 +21,6 @@ build/classes/main/com/flaxapps/joglutil/Shader_Manager.class
 build/classes/main/com/flaxapps/joglutil/Vertex.class
 build/libs/JOGL_Utils_New.jar
 build/tmp/jar/MANIFEST.MF
+.project
+build/libs/JOGL_Utils.jar
+build/poms/pom-default.xml
