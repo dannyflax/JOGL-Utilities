@@ -1,4 +1,4 @@
-# JOGL-Utilities
+## JOGL-Utilities [![Build Status](https://travis-ci.org/dannyflax/JOGL-Utilities.svg?branch=master)](https://travis-ci.org/dannyflax/JOGL-Utilities)
 Some basic utilities to help get a JOGL 3D application off the ground. These are just some helper classes for use with [JOGL](http://jogamp.org/jogl/www/).
 
 
