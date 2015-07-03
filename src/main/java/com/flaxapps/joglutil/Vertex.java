@@ -1,4 +1,4 @@
-package flaxapps.jogl_util;
+package com.flaxapps.joglutil;
 
 public class Vertex {
 	public float x, y, z;

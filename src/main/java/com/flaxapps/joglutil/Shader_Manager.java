@@ -1,4 +1,4 @@
-package flaxapps.jogl_util;
+package com.flaxapps.joglutil;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;

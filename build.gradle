@@ -1,0 +1,13 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+repositories {
+    mavenCentral()
+}
+
+targetCompatibility = 1.8
+
+dependencies {
+    compile ('org.jogamp.jogl:jogl-all:2.1.0','org.jogamp.gluegen:gluegen-rt-main:2.1.0')
+    testCompile 'junit:junit:4.+'
+}
