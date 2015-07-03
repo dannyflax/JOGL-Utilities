@@ -30,7 +30,7 @@ public class Vertex {
     
     @Override
     public String toString(){
-    	return "[X: " + x + ", Y: " + " Z: " + z + "]";
+    	return "[X: " + x + ", Y: " + y + ", Z: " + z + "]";
     }
     
     public float magnitude(){
