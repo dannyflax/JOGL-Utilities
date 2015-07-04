@@ -8,6 +8,6 @@ repositories {
 }
 
 dependencies {
-    compile ('org.jogamp.jogl:jogl-all:2.3.1','org.jogamp.gluegen:gluegen-rt-main:2.3.1')
+    compile ('org.jogamp.jogl:jogl-all:2.3.1','org.jogamp.jogl:nativewindow-main:2.3.1','org.jogamp.gluegen:gluegen-rt-main:2.3.1')
     testCompile 'junit:junit:4.+'
 }
