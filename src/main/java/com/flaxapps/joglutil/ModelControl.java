@@ -1,8 +1,5 @@
 package com.flaxapps.joglutil;
 
-import static javax.media.opengl.GL.GL_TRIANGLE_FAN;
-import static javax.media.opengl.GL2.GL_QUAD_STRIP;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -10,7 +7,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-import javax.media.opengl.GL2;
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
 
 //The shader control class.
 //loads and starts/stops shaders.
@@ -72,53 +70,54 @@ public class ModelControl
 	      for(int i = 0; i<faces.size(); i++){
 	 		 Face f = faces.get(i);
 	 		 if(f.size == 3 || f.size== 4){
-		 		 if(f.size == 3){
-		 			 gl.glBegin(GL_TRIANGLE_FAN);
+		 		 if(f.size != 3){
+		 			 
 		 		 }
-		 		 if(f.size == 4){
-		 			gl.glBegin(GL_QUAD_STRIP);
-		 		 }
+		 		 else{
+		 			gl.glBegin(GL.GL_TRIANGLE_FAN);
+		 		 
 
-		 		 for(int j = 0; j<f.size; j++){
-		 			 
-		 			 
-		 			if(f.texts.size()!=0){
-			 			Vertex t = f.texts.get(j);
-			 			gl.glTexCoord2f(t.x, 1.0f-t.y);
-			 		}
-		 			
-		 			if(f.normals.size() != 0)
-		 			{
-		 				Vertex n = f.normals.get(j);
-		 			
+			 		 for(int j = 0; j<f.size; j++){
+			 			 
+			 			 
+			 			if(f.texts.size()!=0){
+				 			Vertex t = f.texts.get(j);
+				 			gl.glTexCoord2f(t.x, 1.0f-t.y);
+				 		}
+			 			
+			 			if(f.normals.size() != 0)
+			 			{
+			 				Vertex n = f.normals.get(j);
+			 			
+				 			Vertex vf = new Vertex(0,0,0);
+							vf.x = (float) (n.x*Math.cos(rangle) + n.z*Math.sin(rangle));
+							vf.z = (float) (n.x*-Math.sin(rangle) + n.z*Math.cos(rangle));
+							vf.y = n.y;
+				 			n = vf;
+		                    gl.glNormal3f(n.x, n.y, n.z); 
+			 			}
+			 			
+			 			Vertex v = f.vertices.get(j);
+			 			
 			 			Vertex vf = new Vertex(0,0,0);
-						vf.x = (float) (n.x*Math.cos(rangle) + n.z*Math.sin(rangle));
-						vf.z = (float) (n.x*-Math.sin(rangle) + n.z*Math.cos(rangle));
-						vf.y = n.y;
-			 			n = vf;
-                        gl.glNormal3f(n.x, n.y, n.z); 
-		 			}
-		 			
-		 			Vertex v = f.vertices.get(j);
-		 			
-		 			Vertex vf = new Vertex(0,0,0);
-					vf.x = (float) (v.x*Math.cos(rangle) + v.z*Math.sin(rangle));
-					vf.z = (float) (v.x*-Math.sin(rangle) + v.z*Math.cos(rangle));
-					vf.y = v.y;
-					
-					vf.x*=scale.x;
-					vf.y*=scale.y;
-					vf.z*=scale.z;
-					
-		 			v = vf;
-		 			
-		 			gl.glVertex3f(pos.x + v.x, pos.y + v.y, pos.z + v.z);
-		 			ret.add(new Vertex(pos.x + v.x, pos.y + v.y, pos.z + v.z));
-		 			 
+						vf.x = (float) (v.x*Math.cos(rangle) + v.z*Math.sin(rangle));
+						vf.z = (float) (v.x*-Math.sin(rangle) + v.z*Math.cos(rangle));
+						vf.y = v.y;
+						
+						vf.x*=scale.x;
+						vf.y*=scale.y;
+						vf.z*=scale.z;
+						
+			 			v = vf;
+			 			
+			 			gl.glVertex3f(pos.x + v.x, pos.y + v.y, pos.z + v.z);
+			 			ret.add(new Vertex(pos.x + v.x, pos.y + v.y, pos.z + v.z));
+			 			 
+			 		 }
+			 		 
+			 		 gl.glEnd();
+		 		
 		 		 }
-		 		 
-		 		 gl.glEnd();
-		 		 
 	 		 }
 	 	 }
 	      

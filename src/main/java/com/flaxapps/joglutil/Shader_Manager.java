@@ -7,9 +7,8 @@ import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 import java.util.Scanner;
 
-import javax.media.opengl.GL2;
-
 import com.jogamp.common.nio.Buffers;
+import com.jogamp.opengl.GL2;
 
 
 public class Shader_Manager {

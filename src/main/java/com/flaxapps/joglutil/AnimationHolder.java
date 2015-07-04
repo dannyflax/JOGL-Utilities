@@ -3,7 +3,7 @@ package com.flaxapps.joglutil;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.media.opengl.GL2;
+import com.jogamp.opengl.GL2;
 
 /**
  *
