@@ -5,15 +5,15 @@ Some basic utilities to help get a JOGL 3D application off the ground. These are
 
 ##### A Shader Manager
 
--Simplifies the process of loading a file into an OpenGL SL Program
+Simplifies the process of loading a file into an OpenGL SL Program
 
 ##### A Model Controller
 
--Parses .obj (wavefront) 3D model files and turns them into a friendly format that can directly rendered and manipulated in OpenGL
+Parses .obj (wavefront) 3D model files and turns them into a friendly format that can directly rendered and manipulated in OpenGL
 
 ##### An Animation Holder
 
--Allows for the mass upload and animation using a set of .obj files
+Allows for the mass upload and animation using a set of .obj files
 
 #### Recommended Project Setup
 The best way to include this utility as a dependency is to add a build.gradle file containing the following:
